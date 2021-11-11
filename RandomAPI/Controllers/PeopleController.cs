@@ -38,8 +38,11 @@ namespace RandomAPI.Controllers
         }
 
         // DELETE api/People/5
-        public void Delete(int id)
+        public List<Person> Delete(int id)
         {
+            var person = people.Where(x => x.Id == id).FirstOrDefault();
+            people.Remove(person);
+            return people;
         }
     }
 }
