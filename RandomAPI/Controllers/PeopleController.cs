@@ -31,6 +31,20 @@ namespace RandomAPI.Controllers
             return people.Where(x => x.Id == id).FirstOrDefault();
         }
 
+        [Route("api/People/FirstNames")]
+        [HttpGet]
+        public List<string> GetFirstNames()
+        {
+            List<string> output = new List<string>();
+
+            foreach (var person in people)
+            {
+                output.Add(person.FirstName);
+            }
+
+            return output;
+        }
+
         // POST api/People
         public void Post(Person val)
         {
