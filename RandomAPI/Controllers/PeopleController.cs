@@ -1,89 +1,44 @@
-﻿using System;
+﻿using RandomAPI.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace RandomAPI.Controllers
 {
-    public class PeopleController : Controller
+    public class PeopleController : ApiController
     {
-        // GET: People
-        public ActionResult Index()
+        List<Person> people = new List<Person>();
+
+        public PeopleController()
         {
-            return View();
+            people.Add(new Person { FirstName = "Sue", LastName = "Storm", Id = 1 });
+            people.Add(new Person { FirstName = "Bilbo", LastName = "Baggins", Id = 2 });
+            people.Add(new Person { FirstName = "Frodo", LastName = "Baggins", Id = 3 });
+        }
+        // GET api/People
+        public List<Person> Get()
+        {
+            return people;
         }
 
-        // GET: People/Details/5
-        public ActionResult Details(int id)
+        // GET api/People/5
+        public Person Get(int id)
         {
-            return View();
+            return people.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        // GET: People/Create
-        public ActionResult Create()
+        // POST api/People
+        public void Post([FromBody] string value)
         {
-            return View();
         }
 
-        // POST: People/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        // DELETE api/People/5
+        public void Delete(int id)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: People/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: People/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: People/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: People/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
