@@ -10,6 +10,9 @@ using System.Web.Http;
 
 namespace RandomAPI.Controllers
 {
+    /// <summary>
+    /// This is where I give you all the information about my peeps/
+    /// </summary>
     public class PeopleController : ApiController
     {
         List<Person> people = new List<Person>();
@@ -48,9 +51,12 @@ namespace RandomAPI.Controllers
             return people.Where(x => x.Id == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Gets a list of the first names of all users
+        /// </summary>
+        /// <returns>A list of first names</returns>
         [Route("api/People/FirstNames")]
         [HttpGet]
-
         public List<string> GetFirstNames()
         {
             List<string> output = new List<string>();
