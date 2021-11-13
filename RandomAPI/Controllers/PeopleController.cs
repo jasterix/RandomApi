@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 namespace RandomAPI.Controllers
@@ -25,6 +26,22 @@ namespace RandomAPI.Controllers
             return people;
         }
 
+        [Route("api/People/NewNames")]
+        [HttpPost]
+
+        public string CreateNewName(string first, string last)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append(first);
+            sb.Append(" ");
+            sb.Append(last);
+
+            var name = sb.ToString();
+
+            return name;
+        }
+
         // GET api/People/5
         public Person Get(int id)
         {
@@ -33,6 +50,7 @@ namespace RandomAPI.Controllers
 
         [Route("api/People/FirstNames")]
         [HttpGet]
+
         public List<string> GetFirstNames()
         {
             List<string> output = new List<string>();
